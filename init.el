@@ -46,14 +46,6 @@
 
 (setq python-shell-interpreter "/home/eghx/anaconda3/bin/python")
 
-
-;;https://emacs.stackexchange.com/questions/15097/how-do-i-run-a-function-on-start-up?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-
-;; https://stackoverflow.com/questions/2736087/eval-after-load-vs-mode-hook?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-;;doesn't work
-;;(eval-after-load "markdown-mode"
-;; '(markdown-toggle-url-hiding)) 
-
 ;; https://stackoverflow.com/questions/2736087/eval-after-load-vs-mode-hook?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
 
 (add-hook 'markdown-mode-hook 'markdown-toggle-url-hiding)
@@ -85,3 +77,7 @@
 (global-set-key (kbd "<f12>") 'flyspell-auto-correct-previous-word)
 
 (global-set-key (kbd "M-=") 'count-words)
+
+;;https://stackoverflow.com/a/999721/5986651 opens emacs files you close with
+
+(desktop-save-mode 1)
