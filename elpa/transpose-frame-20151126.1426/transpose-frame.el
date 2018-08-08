@@ -5,6 +5,7 @@
 ;; Author: S. Irie
 ;; Maintainer: S. Irie
 ;; Keywords: window
+;; Package-Version: 20151126.1426
 
 (defconst transpose-frame-version "0.1.0")
 

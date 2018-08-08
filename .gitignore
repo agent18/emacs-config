@@ -18,3 +18,4 @@
 
 elpa/gnupg/
 *.data
+*.desktop

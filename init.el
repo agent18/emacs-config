@@ -1,43 +1,39 @@
-;; https://blog.aaronbieber.com/2015/05/24/from-vim-to-emacs-in-fourteen-days.html 
+;; https://stackoverflow.com/questions/31079204/emacs-package-install-script-in-init-file
 
-(require 'package)
 
-(add-to-list 'package-archives '("org" . "http://orgmode.org/elpa/"))
-(add-to-list 'package-archives '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives '("melpa" . "http://melpa.org/packages/"))
-(add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
-
-(setq package-enable-at-startup nil)
+;; Added by Package.el.  This must come before configurations of
+;; installed packages.  Don't delete this line.  If you don't want it,
+;; just comment it out by adding a semicolon to the start of the line.
+;; You may delete these explanatory comments.
 (package-initialize)
 
-;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
+(load "~/.emacs.d/packages-init")
 
-(setq-default auto-fill-function 'do-auto-fill)
-
+;----------- Shortcuts-------------------
 ;; https://github.com/bnbeckwith/wc-mode
-
-;; Add the path to the repo
-(add-to-list 'load-path "~/.emacs.d/emacs_stuff/wc-mode/")
-(require 'wc-mode)
-;; Suggested setting
+;; wc-mode Suggested setting
 (global-set-key "\C-cw" 'wc-mode)
 
-
-;; https://github.com/syohex/emacs-mode-line-timer
-
-;; Add the path to the repo
-(add-to-list 'load-path "~/.emacs.d/emacs_stuff/emacs-mode-line-timer")
-(require 'mode-line-timer)
-;; Suggested setting
+;; Mode-line-timer suggested setting
 (global-set-key "\C-ct" 'mode-line-timer-start)
 (global-set-key "\C-cp" 'mode-line-timer-stop)
-;; https://emacs.stackexchange.com/questions/3488/define-controlshift-keys-without-kbd
 
+;; https://emacs.stackexchange.com/questions/14909/how-to-use-flyspell-to-efficiently-correct-previous-word
+;; https://www.emacswiki.org/emacs/DedicatedKeys
+(global-set-key (kbd "<f12>") 'flyspell-auto-correct-previous-word)
+(global-set-key (kbd "M-=") 'count-words)
+
+;; General links for instructions on keybindings
+;; https://emacs.stackexchange.com/questions/3488/define-controlshift-keys-without-kbd
 ;; https://emacs.stackexchange.com/questions/27926/avoiding-overwriting-global-key-bindings
 ;; info on key bindings
 
+;------------ switch on modes/functions upon startup---------------
+;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
+(setq-default auto-fill-function 'do-auto-fill)
 
 ;; https://www.emacswiki.org/emacs/AutoFillMode
+;; paragraph filling and spell check mode 
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook 'flyspell-mode)
 
@@ -50,33 +46,15 @@
 
 (add-hook 'markdown-mode-hook 'markdown-toggle-url-hiding)
 (custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(package-selected-packages (quote (markdown-mode))))
 
+;; done using gui and it got converted to this!
 (custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
  '(markdown-header-face-1 ((t (:inherit markdown-header-face :foreground "medium blue" :height 1.0))))
  '(markdown-header-face-2 ((t (:inherit markdown-header-face :foreground "medium blue" :height 1.0))))
  '(markdown-header-face-3 ((t (:inherit markdown-header-face :foreground "dark orange" :height 1.0))))
  '(markdown-header-face-4 ((t (:inherit markdown-header-face :foreground "dark cyan" :height 1.0)))))
 
-;; https://www.emacswiki.org/emacs/TransposeFrame
-;;   M-x transpose-frame
-;; Add the path to the repo
-(add-to-list 'load-path "~/.emacs.d/emacs_stuff/emacs-transpose-frame")
-(require 'transpose-frame)
-
-;;https://emacs.stackexchange.com/questions/14909/how-to-use-flyspell-to-efficiently-correct-previous-word
-;;https://www.emacswiki.org/emacs/DedicatedKeys
-(global-set-key (kbd "<f12>") 'flyspell-auto-correct-previous-word)
-
-(global-set-key (kbd "M-=") 'count-words)
 
 ;;https://stackoverflow.com/a/999721/5986651 opens emacs files you close with
 
