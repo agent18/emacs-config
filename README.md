@@ -29,12 +29,12 @@ Just download the files into your `~/.emacs.d/` folder. Delete the
 `elpa` folder and the `.gitignore` file. That's it! Open Emacs. All the
 packages needed will be installed automatically! Bye!
 
-In case you want to try it and see how it works, download the files in
-the git repository to `~/.emacs2.d/` and then,
+In case you want to try it and see how it works first, download the files in
+the git repository to `~/.emacs2.d/` and then type this in the terminal
 
 	emacs -q -l ~/.emacs2
 
-[Source](https://emacs.stackexchange.com/a/6002/17941) (I haven't tested this).
+[Source](https://emacs.stackexchange.com/a/6002/17941) (I haven't tested the above command).
 
 ## Info
 
@@ -42,8 +42,8 @@ This `init.el` file contains shortcuts, settings of packages and
 loading of the `packages-init.el` file. The `packages-init.el` file
 contains the packages that need to be installed.
 
->For GnuEmacs, your init file is ~/.emacs, ~/.emacs.el, or
->~/.emacs.d/init.el. You can choose to use any of these names. ‘~/’
+>For GnuEmacs, your init file is `~/.emacs, ~/.emacs.el, or
+>~/.emacs.d/init.el`. You can choose to use any of these names. ‘~/’
 >stands for your home directory. - [Emacs init wiki](https://www.emacswiki.org/emacs/InitFile)
 
 ## License
