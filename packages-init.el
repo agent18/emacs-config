@@ -10,7 +10,7 @@
 
 ; list the packages you want1
 (setq package-list
-    '(markdown-mode wc-mode transpose-frame ))
+    '(markdown-mode wc-mode transpose-frame auctex))
 
 ;; https://github.com/syohex/emacs-mode-line-timer
 ;; Add the path to the repo
