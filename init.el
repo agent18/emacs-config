@@ -53,7 +53,11 @@
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(package-selected-packages (quote (ess-smart-underscore ess auctex markdown-mode))))
+ '(TeX-PDF-from-DVI "Dvips")
+ '(TeX-engine (quote default))
+ '(package-selected-packages
+   (quote
+    (pabbrev auctex-latexmk ess-smart-underscore ess auctex markdown-mode))))
 
 ;; done using gui and it got converted to this!
 (custom-set-faces
@@ -75,5 +79,52 @@
 ;; https://www.r-bloggers.com/using-r-with-emacs-and-ess/
 ;; https://github.com/pprevos/r.prevos.net/blob/master/Miscellaneous/BodyImage/init.el
 
-;; Line numbers only for 
+;; Line numbers only for R
 (add-hook 'ess-mode-hook 'linum-mode)
+
+;; tex mode hooks
+
+(add-hook 'LaTeX-mode-hook 'linum-mode)
+
+;; https://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start 	
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+
+;;; Enable Flyspell mode for TeX modes such as AUCTeX. Highlights all misspelled words.
+
+(add-hook 'TeX-mode-hook 'flyspell-mode)
+
+;; (add-hook 'TeX-mode-hook
+;;           (lambda () (TeX-fold-mode 1))); Automatically activate
+;; 					; TeX-fold-mode.
+
+;; https://emacs.stackexchange.com/a/362/17941
+(add-hook 'LaTeX-mode-hook #'latex-extra-mode); org mode type of folding!
+
+;; (add-hook 'LaTeX-mode-hook #'outline-minor-mode)
+
+;; https://tex.stackexchange.com/a/232278/97901
+;; emacs problems after 0 pages
+;; (add-to-list
+;;  'TeX-expand-list
+;;  (list "%(extraopts)"
+;;        (lambda nil TeX-command-extra-options)))
+;; https://superuser.com/a/256978/854999	
+
+;;https://stackoverflow.com/a/7811232/5986651
+;; to do thigns automatically C-0 doesnt work!
+;; (require 'tex-buf)
+
+;; (defun run-latexmk ()
+;;   (interactive)
+;;   (let ((TeX-save-query nil)
+;;         (TeX-process-asynchronous nil)
+;;         (master-file (TeX-master-file)))
+;;     (TeX-save-document "")
+;;     (TeX-run-TeX "latexmk" "latexmk" master-file)
+;;     (if (plist-get TeX-error-report-switches (intern master-file))
+;;         (TeX-next-error t)
+;;       (minibuffer-message "latexmk done"))))
+
+;; (add-hook 'LaTeX-mode-hook
+;;           (lambda () (local-set-key (kbd "C-c0") #'run-latexmk)))

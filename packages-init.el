@@ -10,7 +10,8 @@
 
 ; list the packages you want
 (setq package-list
-    '(markdown-mode wc-mode transpose-frame auctex ess ess-smart-underscore))
+    '(markdown-mode wc-mode transpose-frame auctex ess
+		    ess-smart-underscore auctex-latexmk latex-extra pabbrev))
 
 ;; https://github.com/syohex/emacs-mode-line-timer
 ;; Add the path to the repo
@@ -29,3 +30,6 @@
 (dolist (package package-list)
   (unless (package-installed-p package)
     (package-install package)))
+
+;; https://github.com/tom-tan/auctex-latexmk 
+(auctex-latexmk-setup)
