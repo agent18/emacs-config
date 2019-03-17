@@ -30,6 +30,12 @@
 ;; https://emacs.stackexchange.com/questions/27926/avoiding-overwriting-global-key-bindings
 ;; info on key bindings
 
+;; https://stackoverflow.com/a/2952021/5986651
+
+(global-set-key (kbd "M-[") 'insert-pair)
+(global-set-key (kbd "M-{") 'insert-pair)
+(global-set-key (kbd "M-)") 'delete-pair)
+
 ;------------ switch on modes/functions upon startup---------------
 ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
 (setq-default auto-fill-function 'do-auto-fill)
@@ -39,6 +45,7 @@
 (add-hook 'text-mode-hook 'turn-on-auto-fill)
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'abbrev-mode)
+(add-hook 'text-mode-hook 'winner-mode)
 
 ;; for python
 ;; https://stackoverflow.com/questions/2515754/changing-python-interpreter-for-emacs?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -57,7 +64,7 @@
  '(TeX-engine (quote default))
  '(package-selected-packages
    (quote
-    (pabbrev auctex-latexmk ess-smart-underscore ess auctex markdown-mode))))
+    (rmarkdown polymode pabbrev auctex-latexmk ess-smart-underscore ess auctex markdown-mode))))
 
 ;; done using gui and it got converted to this!
 (custom-set-faces
@@ -82,6 +89,7 @@
 ;; Line numbers only for R
 (add-hook 'ess-mode-hook 'linum-mode)
 
+;;#######################################################
 ;; tex mode hooks
 
 (add-hook 'LaTeX-mode-hook 'linum-mode)
@@ -128,3 +136,52 @@
 
 ;; (add-hook 'LaTeX-mode-hook
 ;;           (lambda () (local-set-key (kbd "C-c0") #'run-latexmk)))
+;;################################# End of Latex, beginning of R#########################
+
+;; insert R chunk in RMD mode #polymode and all that shabang
+;; https://emacs.stackexchange.com/questions/27405/insert-code-chunk-in-r-markdown-with-yasnippet-and-polymode
+
+(defun tws-insert-r-chunk (header) 
+  "Insert an r-chunk in markdown mode. Necessary due to interactions between polymode and yas snippet" 
+  (interactive "sHeader: ") 
+  (insert (concat "```{r " header "}\n\n```")) 
+  (forward-line -1))
+
+;; keybinding for tws-inster-r-chunk for latex but idee is same
+;; https://stackoverflow.com/a/14230685/5986651 emacs wiki
+;; (https://www.emacswiki.org/emacs?action=browse;oldid=KeyBindingDiscussion;id=ChoosingKeysToBind)
+
+;; (eval-after-load 'rmd-mode
+;;   '(define-key rmd-mode-map (kbd "C-c r")
+;;      'tws-insert-r-chunk)) 
+
+(global-set-key (kbd "C-c r") 'tws-insert-r-chunk) 
+
+;; ######################################## beginning of function (word)[]
+;; https://tex.stackexchange.com/questions/172754/inserting-custom-commands-with-emacsauctex
+;; total time < 10 mins to get it done :)
+
+(defun insert-mycustomcommand (beg end)
+  (interactive "r") ;; take the region
+  (save-excursion
+    (goto-char beg)
+    (insert "(")
+    (forward-word)
+    (insert "")
+    (goto-char (+ end (length "(") 0))
+    (insert ")[]")))
+    
+
+(global-set-key (kbd "C-c b") 'insert-mycustomcommand) 
+
+;; insert macro for markdown mode!
+;; https://emacs.stackexchange.com/a/71/17941
+
+(fset 'quote-and-autofill
+   (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 134217853 3 19 113 134217848 98 97 99 107 tab 119 97 114 100 tab 112 97 114 97 102 backspace 103 114 97 tab return 67108896 134217853 134217841] 0 "%d")) arg)))
+
+;; making keybinding for the above function
+;;https://stackoverflow.com/a/14230685/5986651
+(add-hook 'markdown-mode-hook ;; guessing
+    '(lambda ()
+       (local-set-key (kbd "C-c q") #'quote-and-autofill)))

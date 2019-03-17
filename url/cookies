@@ -1,0 +1,25 @@
+;; Emacs-W3 HTTP cookies file
+;; Automatically generated file!!! DO NOT EDIT!!!
+
+(setq url-cookie-storage
+ '((".coursera.org"
+  [url-cookie "CSRF3-Token" "1552406662.5pIy3JciMGEBw1Li" "Tue, 12 Mar 2019 16:04:22 GMT" "/" ".coursera.org" nil]
+  [url-cookie "Max-Age" "31536000" "Sun, 01 Mar 2020 16:04:22 GMT" "/" ".coursera.org" nil]
+  [url-cookie "__204u" "5493253855-1551542662857" "Sun, 01 Mar 2020 16:04:22 GMT" "/" ".coursera.org" nil]))
+)
+(setq url-cookie-secure-storage
+ '((".wikipedia.org"
+  [url-cookie "WMF-Last-Access-Global" "02-Mar-2019" "Wed, 03 Apr 2019 12:00:00 GMT" "/" ".wikipedia.org" t]
+  [url-cookie "HttpOnly" nil "Wed, 03 Apr 2019 12:00:00 GMT" "/" ".wikipedia.org" t])
+ ("en.wikipedia.org"
+  [url-cookie "WMF-Last-Access" "02-Mar-2019" "Wed, 03 Apr 2019 12:00:00 GMT" "/" "en.wikipedia.org" t]
+  [url-cookie "HttpOnly" nil "Wed, 03 Apr 2019 12:00:00 GMT" "/" "en.wikipedia.org" t])
+ ("www.wikipedia.org"
+  [url-cookie "WMF-Last-Access" "02-Mar-2019" "Wed, 03 Apr 2019 12:00:00 GMT" "/" "www.wikipedia.org" t]
+  [url-cookie "HttpOnly" nil "Wed, 03 Apr 2019 12:00:00 GMT" "/" "www.wikipedia.org" t]))
+)
+
+;; Local Variables:
+;; version-control: never
+;; no-byte-compile: t
+;; End:
