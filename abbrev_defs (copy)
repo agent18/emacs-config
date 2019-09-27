@@ -85,75 +85,33 @@
 
 (define-abbrev-table 'global-abbrev-table
   '(
-    ("0n" "[0]" nil 22)
-    ("10n" "[10]" nil 74)
-    ("11n" "[11]" nil 22)
-    ("12n" "[12]" nil 35)
-    ("13n" "[13]" nil 16)
-    ("14n" "[14]" nil 18)
-    ("15n" "[15]" nil 17)
-    ("1n" "[1]" nil 514)
-    ("2n" "[2]" nil 523)
-    ("3n" "[3]" nil 400)
-    ("4n" "[4]" nil 215)
-    ("5n" "[5]" nil 185)
-    ("6n" "[6]" nil 119)
-    ("7n" "[7]" nil 105)
+    ("0" "[0]" nil 1)
+    ("1" "[1]" nil 309)
+    ("10" "[10]" nil 55)
+    ("11" "[11]" nil 18)
+    ("12" "[12]" nil 17)
+    ("13" "[13]" nil 10)
+    ("14" "[14]" nil 8)
+    ("15" "[15]" nil 13)
+    ("2" "[2]" nil 298)
+    ("3" "[3]" nil 278)
+    ("4" "[4]" nil 159)
+    ("5" "[5]" nil 140)
+    ("6" "[6]" nil 93)
+    ("7" "[7]" nil 86)
+    ("8" "[8]" nil 53)
     ("80k" "80khours" nil 32)
-    ("8n" "[8]" nil 70)
+    ("9" "[9]" nil 39)
     ("97k" "[97k](https://80000hours.org/2016/08/reflections-from-a-givewell-employee/)<span>$</span> " nil 2)
-    ("9n" "[9]" nil 56)
-    ("NA" "N/A" nil 9)
-    ("ainta" "*A-is-not-the-answer*" nil 0)
-    ("bel" "*belief*" nil 0)
-    ("ch" "**Checklist**: yes; false; none; not-chapter; not-running; none" nil 183)
-    ("cl" "**Claims**:" nil 199)
-    ("cuz" "*because-should-due-to*" nil 7)
-    ("de" "**Definition**:" nil 44)
-    ("deun" "*definition-unclear*" nil 5)
-    ("dol" "<span>$</span>" nil 17)
-    ("ex" "**Example**: 
+    ("NA" "N/A" nil 2)
+    ("ch" "**Checklist** : 
 
-**Definition**: 
-
-**Checklist**: 
-" nil 96)
-    ("exmade" "*example-matching-definition*" nil 17)
-    ("exmasu" "*example-matching-subject*" nil 11)
-    ("fa" "*failed*" nil 17)
-    ("fu" "*future-with-no-ex*" nil 0)
-    ("hasex" "*unsure-if-it-has-example*" nil 1)
-    ("imp" "*a-is-important*" nil 0)
-    ("inex" "*incomplete-example*" nil 0)
-    ("isex" "*unsure-if-it-is-example*" nil 0)
-    ("mico" "*missed-comparison*" nil 0)
-    ("miif" "*missed-if*" nil 0)
-    ("mus" "*must*" nil 1)
-    ("noex" "*no-example*" nil 34)
-    ("oft" "*often*" nil 1)
-    ("pr" "**Predicate**:" nil 42)
-    ("re" "****************************Reply*******************************
-
-
-****************************************************************" nil 5)
-    ("ru" "*cannot-identify-if-running*" nil 0)
-    ("sel" "*self-claim-with-0-ex*" nil 3)
-    ("stt" "**Stats**:" nil 0)
-    ("su" "**Subject**:" nil 46)
-    ("subj" "**Subject**: 
-
-**Predicate**: 
-
-**Example**: 
-
-**Definition**: 
-
-**Checklist**: yes; false; none; not-chapter; not-running; none " nil 142)
-    ("suprsp" "*subject-predicate-split*" nil 1)
-    ("te" "*testable*" nil 2)
-    ("ti" "*time*" nil 12)
-    ("un" "*unsure*" nil 20)
-    ("xpatb" "*X-prefers-A-to-B*" nil 0)
+1. Could it have no examples? 
+2. Have you considered falsifying examples? 
+3. Does it have 'no', 'best'? and did you factor them? 
+4. Examples from Article?
+5. Is this a running example?
+6. If-then type (did you factor the if)?" nil 4)
    ))
 
 (define-abbrev-table 'help-mode-abbrev-table '())
@@ -176,8 +134,6 @@
 
 (define-abbrev-table 'messages-buffer-mode-abbrev-table '())
 
-(define-abbrev-table 'nxml-mode-abbrev-table '())
-
 (define-abbrev-table 'occur-edit-mode-abbrev-table '())
 
 (define-abbrev-table 'occur-mode-abbrev-table '())
@@ -199,8 +155,6 @@
 (define-abbrev-table 'prog-mode-abbrev-table '())
 
 (define-abbrev-table 'scss-mode-abbrev-table '())
-
-(define-abbrev-table 'select-tags-table-mode-abbrev-table '())
 
 (define-abbrev-table 'sgml-mode-abbrev-table '())
 

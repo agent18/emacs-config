@@ -36,6 +36,19 @@
 (global-set-key (kbd "M-{") 'insert-pair)
 (global-set-key (kbd "M-)") 'delete-pair)
 
+
+;; making keybinding for the quote-and-autofill
+;;https://stackoverflow.com/a/14230685/5986651
+(add-hook 'markdown-mode-hook ;; guessing
+    '(lambda ()
+       (local-set-key (kbd "C-c q") #'quote-and-autofill)))
+
+;; abbrev-mode toggle
+
+(add-hook 'markdown-mode-hook ;; guessing
+    '(lambda ()
+       (local-set-key (kbd "C-c a") #'abbrev-mode)))
+
 ;------------ switch on modes/functions upon startup---------------
 ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
 (setq-default auto-fill-function 'do-auto-fill)
@@ -46,6 +59,8 @@
 (add-hook 'text-mode-hook 'flyspell-mode)
 (add-hook 'text-mode-hook 'abbrev-mode)
 (add-hook 'text-mode-hook 'winner-mode)
+(add-hook 'text-mode-hook 'electric-pair-mode)
+(add-hook 'markdown-mode-hook 'abbrev-mode)
 
 ;; for python
 ;; https://stackoverflow.com/questions/2515754/changing-python-interpreter-for-emacs?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -88,6 +103,9 @@
 
 ;; Line numbers only for R
 (add-hook 'ess-mode-hook 'linum-mode)
+
+;; https://emacs.stackexchange.com/questions/13189/github-flavored-markdown-mode-syntax-highlight-code-blocks
+(setq markdown-fontify-code-blocks-natively t)
 
 ;;#######################################################
 ;; tex mode hooks
@@ -169,19 +187,50 @@
     (forward-word)
     (insert "")
     (goto-char (+ end (length "(") 0))
-    (insert ")[]")))
+    (insert ")[]")
+    ))
     
 
 (global-set-key (kbd "C-c b") 'insert-mycustomcommand) 
 
-;; insert macro for markdown mode!
+;; insert macro for markdown mode! quotation and autofill!
 ;; https://emacs.stackexchange.com/a/71/17941
 
 (fset 'quote-and-autofill
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 134217853 3 19 113 134217848 98 97 99 107 tab 119 97 114 100 tab 112 97 114 97 102 backspace 103 114 97 tab return 67108896 134217853 134217841] 0 "%d")) arg)))
 
-;; making keybinding for the above function
-;;https://stackoverflow.com/a/14230685/5986651
-(add-hook 'markdown-mode-hook ;; guessing
-    '(lambda ()
-       (local-set-key (kbd "C-c q") #'quote-and-autofill)))
+;; http://ergoemacs.org/emacs/emacs_insert_brackets_by_pair.html
+;; electric pair mode
+
+;; (setq electric-pair-pairs
+
+;;       `(
+;; 	(?\" . ?\")
+;;         (?\$ . ?\$)
+;; 	(?\` . ?\`)))
+
+(setq electric-pair-pairs
+
+      `(
+	(?\" . ?\")
+	(?\` . ?\`)))
+
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; abort emacs https://stackoverflow.com/a/41466688/5986651
+;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
+
+(defun ess-abort ()
+  (interactive)
+  (kill-process (ess-get-process)))
+(define-key ess-mode-map (kbd "C-c C-a") 'ess-abort)
+(define-key inferior-ess-mode-map (kbd "C-c C-a") 'ess-abort)
+
+
+;;;;;;;;;;;;;;;;;;;; Abbrev mode to not work with underscore and . ;;;;;;;;;;;
+;;;;;;;;;;;;;;;;;;; https://emacs.stackexchange.com/a/651/17941;;;;;;;;;;;;;;;
+;; (defun self-insert-no-abbrev ()
+;;   (interactive)
+;;   (let ((abbrev-mode nil))
+;;     (call-interactively 'self-insert-command)))
+
+;; (global-set-key "_" #'self-insert-no-abbrev)
+;; (global-set-key ";" #'self-insert-no-abbrev)
