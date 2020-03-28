@@ -61,6 +61,8 @@
 (add-hook 'text-mode-hook 'winner-mode)
 (add-hook 'text-mode-hook 'electric-pair-mode)
 (add-hook 'markdown-mode-hook 'abbrev-mode)
+(add-hook 'text-mode-hook 'drag-stuff-mode)
+(add-hook 'text-mode-hook 'centered-window-mode)
 
 ;; for python
 ;; https://stackoverflow.com/questions/2515754/changing-python-interpreter-for-emacs?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
@@ -77,9 +79,10 @@
  ;; If there is more than one, they won't work right.
  '(TeX-PDF-from-DVI "Dvips")
  '(TeX-engine (quote default))
+ '(org-clock-mode-line-total (quote current))
  '(package-selected-packages
    (quote
-    (rmarkdown polymode pabbrev auctex-latexmk ess-smart-underscore ess auctex markdown-mode))))
+    (centered-window centered-window-mode drag-stuff rmarkdown polymode pabbrev auctex-latexmk ess-smart-underscore ess auctex markdown-mode))))
 
 ;; done using gui and it got converted to this!
 (custom-set-faces
@@ -218,11 +221,11 @@
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; abort emacs https://stackoverflow.com/a/41466688/5986651
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
-(defun ess-abort ()
-  (interactive)
-  (kill-process (ess-get-process)))
-(define-key ess-mode-map (kbd "C-c C-a") 'ess-abort)
-(define-key inferior-ess-mode-map (kbd "C-c C-a") 'ess-abort)
+;; (defun ess-abort ()
+;;   (interactive)
+;;   (kill-process (ess-get-process)))
+;; (define-key ess-mode-map (kbd "C-c C-a") 'ess-abort)
+;; (define-key inferior-ess-mode-map (kbd "C-c C-a") 'ess-abort)
 
 
 ;;;;;;;;;;;;;;;;;;;; Abbrev mode to not work with underscore and . ;;;;;;;;;;;
@@ -234,3 +237,9 @@
 
 ;; (global-set-key "_" #'self-insert-no-abbrev)
 ;; (global-set-key ";" #'self-insert-no-abbrev)
+
+;;;;;;;;;;;;;; drag-stuff
+
+(drag-stuff-global-mode 1)
+
+(drag-stuff-define-keys)
