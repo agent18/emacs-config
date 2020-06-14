@@ -9,7 +9,7 @@
 
 (load "~/.emacs.d/packages-init")
 
-;----------- Shortcuts-------------------
+;----------- Self keybindings-------------------
 ;; https://github.com/bnbeckwith/wc-mode
 ;; wc-mode Suggested setting
 (global-set-key "\C-cw" 'wc-mode)
@@ -20,47 +20,58 @@
 (global-set-key "\C-ct" 'mode-line-timer-start)
 (global-set-key "\C-cp" 'mode-line-timer-stop)
 
-;; https://emacs.stackexchange.com/questions/14909/how-to-use-flyspell-to-efficiently-correct-previous-word
 ;; https://www.emacswiki.org/emacs/DedicatedKeys
-(global-set-key (kbd "<f12>") 'flyspell-auto-correct-previous-word)
 (global-set-key (kbd "M-=") 'count-words)
 
 ;; General links for instructions on keybindings
 ;; https://emacs.stackexchange.com/questions/3488/define-controlshift-keys-without-kbd
 ;; https://emacs.stackexchange.com/questions/27926/avoiding-overwriting-global-key-bindings
 ;; info on key bindings
-
 ;; https://stackoverflow.com/a/2952021/5986651
 
 (global-set-key (kbd "M-[") 'insert-pair)
 (global-set-key (kbd "M-{") 'insert-pair)
 (global-set-key (kbd "M-)") 'delete-pair)
 
-
-;; making keybinding for the quote-and-autofill
-;;https://stackoverflow.com/a/14230685/5986651
-(add-hook 'markdown-mode-hook ;; guessing
-    '(lambda ()
-       (local-set-key (kbd "C-c q") #'quote-and-autofill)))
-
-;; abbrev-mode toggle
-
-(add-hook 'markdown-mode-hook ;; guessing
-    '(lambda ()
-       (local-set-key (kbd "C-c a") #'abbrev-mode)))
+(global-set-key (kbd "C-c b") 'insert-mycustomcommand)
+(global-set-key (kbd "C-c r") 'tws-insert-r-chunk); not sure it will
+						  ; work as function
+						  ; is somewhere else.
 
 ;; ibuffer mode https://emacs.stackexchange.com/a/38665/17941
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
-;------------ switch on modes/functions upon startup---------------
-;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
-(setq-default auto-fill-function 'do-auto-fill)
+;------------ setq and hooks---------------
+
+(setq-default auto-fill-function 'do-auto-fill); https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
+
 (setq python-shell-interpreter "/home/eghx/anaconda3/bin/python")
 (setq python-shell-interpreter-args "--pylab")
+
+(add-hook 'python-mode-hook 'anaconda-mode)
+(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
 ;; https://emacs.stackexchange.com/questions/13189/github-flavored-markdown-mode-syntax-highlight-code-blocks
 (setq markdown-fontify-code-blocks-natively t)
 
+;; https://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start 	
+(setq TeX-auto-save t)
+(setq TeX-parse-self t)
+
+
+
+;; (setq electric-pair-pairs
+
+;;       `(
+;; 	(?\" . ?\")
+;;         (?\$ . ?\$)
+;; 	(?\` . ?\`)))
+
+(setq electric-pair-pairs
+      `(
+	(?\" . ?\")
+	(?\` . ?\`))) ;; http://ergoemacs.org/emacs/emacs_insert_brackets_by_pair.html
+		      ;; electric pair mode
 
 ;; https://www.emacswiki.org/emacs/AutoFillMode
 ;; paragraph filling and spell check mode 
@@ -74,6 +85,13 @@
 
 (add-hook 'markdown-mode-hook 'abbrev-mode)
 (add-hook 'markdown-mode-hook 'markdown-toggle-url-hiding)
+(add-hook 'markdown-mode-hook ;; guessing
+    '(lambda ()
+       (local-set-key (kbd "C-c q") #'quote-and-autofill)));; making
+							   ;; keybinding
+							   ;; for the
+							   ;; quote-and-autofill
+							   ;; https://stackoverflow.com/a/14230685/5986651
 
 (add-hook 'org-mode-hook 'org-indent-mode)
 
@@ -81,16 +99,27 @@
 
 (add-hook 'LaTeX-mode-hook 'linum-mode)
 (add-hook 'TeX-mode-hook 'flyspell-mode)
+(add-hook 'LaTeX-mode-hook #'latex-extra-mode); org mode type of
+					      ; folding!
+					      ; https://emacs.stackexchange.com/a/362/17941
 
-'(wc-idle-wait 1)
+
+(add-hook 'markdown-mode-hook ;; guessing
+    '(lambda ()
+       (local-set-key (kbd "C-c a") #'abbrev-mode))); abbrev-mode
+						    ; toggle
+
+'(wc-idle-wait 1); slows down markdown-mode
 '(org-clock-mode-line-total (quote current))
 
-;; https://stackoverflow.com/a/999721/5986651 opens emacs files you close with
-(desktop-save-mode 1)
 
+(desktop-save-mode 1); https://stackoverflow.com/a/999721/5986651
+		     ; opens emacs files you close with
 
+(drag-stuff-global-mode 1)
+(drag-stuff-define-keys)
 
-
+;;-------------done using gui-------
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -111,7 +140,7 @@
 	   (name 16 -1)
 	   " " filename)))))
 
-;; done using gui and it got converted to this!
+
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -123,63 +152,7 @@
  '(markdown-header-face-4 ((t (:inherit markdown-header-face :foreground "dark cyan" :height 1.0)))))
 
 
-
-
-
-;; https://www.r-bloggers.com/using-r-with-emacs-and-ess/
-;; https://github.com/pprevos/r.prevos.net/blob/master/Miscellaneous/BodyImage/init.el
-
-
-
-;;#######################################################
-;; tex mode hooks
-
-
-
-;; https://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start 	
-(setq TeX-auto-save t)
-(setq TeX-parse-self t)
-
-;;; Enable Flyspell mode for TeX modes such as AUCTeX. Highlights all misspelled words.
-
-
-
-;; (add-hook 'TeX-mode-hook
-;;           (lambda () (TeX-fold-mode 1))); Automatically activate
-;; 					; TeX-fold-mode.
-
-;; https://emacs.stackexchange.com/a/362/17941
-(add-hook 'LaTeX-mode-hook #'latex-extra-mode); org mode type of folding!
-
-;; (add-hook 'LaTeX-mode-hook #'outline-minor-mode)
-
-;; https://tex.stackexchange.com/a/232278/97901
-;; emacs problems after 0 pages
-;; (add-to-list
-;;  'TeX-expand-list
-;;  (list "%(extraopts)"
-;;        (lambda nil TeX-command-extra-options)))
-;; https://superuser.com/a/256978/854999	
-
-;;https://stackoverflow.com/a/7811232/5986651
-;; to do thigns automatically C-0 doesnt work!
-;; (require 'tex-buf)
-
-;; (defun run-latexmk ()
-;;   (interactive)
-;;   (let ((TeX-save-query nil)
-;;         (TeX-process-asynchronous nil)
-;;         (master-file (TeX-master-file)))
-;;     (TeX-save-document "")
-;;     (TeX-run-TeX "latexmk" "latexmk" master-file)
-;;     (if (plist-get TeX-error-report-switches (intern master-file))
-;;         (TeX-next-error t)
-;;       (minibuffer-message "latexmk done"))))
-
-;; (add-hook 'LaTeX-mode-hook
-;;           (lambda () (local-set-key (kbd "C-c0") #'run-latexmk)))
-;;################################# End of Latex, beginning of R#########################
-
+;;-----------Functions--------------------------
 ;; insert R chunk in RMD mode #polymode and all that shabang
 ;; https://emacs.stackexchange.com/questions/27405/insert-code-chunk-in-r-markdown-with-yasnippet-and-polymode
 
@@ -197,7 +170,7 @@
 ;;   '(define-key rmd-mode-map (kbd "C-c r")
 ;;      'tws-insert-r-chunk)) 
 
-(global-set-key (kbd "C-c r") 'tws-insert-r-chunk) 
+
 
 ;; ######################################## beginning of function (word)[]
 ;; https://tex.stackexchange.com/questions/172754/inserting-custom-commands-with-emacsauctex
@@ -214,30 +187,13 @@
     (insert ")[]")
     ))
     
-
-(global-set-key (kbd "C-c b") 'insert-mycustomcommand) 
-
 ;; insert macro for markdown mode! quotation and autofill!
 ;; https://emacs.stackexchange.com/a/71/17941
 
 (fset 'quote-and-autofill
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 134217853 3 19 113 134217848 98 97 99 107 tab 119 97 114 100 tab 112 97 114 97 102 backspace 103 114 97 tab return 67108896 134217853 134217841] 0 "%d")) arg)))
 
-;; http://ergoemacs.org/emacs/emacs_insert_brackets_by_pair.html
-;; electric pair mode
 
-;; (setq electric-pair-pairs
-
-;;       `(
-;; 	(?\" . ?\")
-;;         (?\$ . ?\$)
-;; 	(?\` . ?\`)))
-
-(setq electric-pair-pairs
-
-      `(
-	(?\" . ?\")
-	(?\` . ?\`)))
 
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; abort emacs https://stackoverflow.com/a/41466688/5986651
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;; ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
@@ -261,9 +217,7 @@
 
 ;;;;;;;;;;;;;; drag-stuff
 
-(drag-stuff-global-mode 1)
 
-(drag-stuff-define-keys)
 
 
 

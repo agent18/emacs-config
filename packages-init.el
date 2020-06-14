@@ -9,12 +9,13 @@
 (add-to-list 'package-archives '("melpa-stable" . "http://stable.melpa.org/packages/"))
 
 ; list the packages you want
-(setq package-list
-    '(markdown-mode wc-mode transpose-frame auctex ess
-		    ess-smart-underscore auctex-latexmk latex-extra
-		    pabbrev polymode poly-R poly-markdown drag-stuff
-		    centered-window centered-window-mode drag-stuff
-		    pabbrev rmarkdown anaconda-mode))
+(setq package-list '(markdown-mode wc-mode transpose-frame auctex
+    ess ess-smart-underscore auctex-latexmk latex-extra pabbrev
+    polymode poly-R poly-markdown drag-stuff centered-window
+    drag-stuff pabbrev anaconda-mode))
+
+;; rmarkdown cetered-window-mode was not able to install them. If I
+;; need them later I could figure out how to use them.
 
 ;; https://github.com/syohex/emacs-mode-line-timer
 ;; Add the path to the repo
