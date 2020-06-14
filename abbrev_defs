@@ -99,7 +99,7 @@
     ("5n" "[5]" nil 185)
     ("6n" "[6]" nil 120)
     ("7n" "[7]" nil 106)
-    ("80k" "80khours" nil 107)
+    ("80k" "80000hours" nil 128)
     ("8n" "[8]" nil 70)
     ("97k" "[97k](https://80000hours.org/2016/08/reflections-from-a-givewell-employee/)<span>$</span>" nil 6)
     ("9n" "[9]" nil 56)
@@ -108,17 +108,17 @@
     ("ainta" "*A-is-not-the-answer*" nil 0)
     ("bel" "*belief-about-right-wrong*" nil 4)
     ("ch" "**Checklist**: no; neither; " nil 239)
-    ("cl" "**Claims**:" nil 436)
+    ("cl" "**Claims**:" nil 473)
     ("cuz" "*because-should-due-to*" nil 17)
     ("def" "**Definition**:" nil 52)
     ("deun" "*definition-unclear*" nil 22)
-    ("dol" "<span>$</span>" nil 45)
+    ("dol" "`$`" nil 51)
     ("ex" "**Example**: 
 
 **Definition**: 
 
 **Checklist**: 
-" nil 173)
+" nil 197)
     ("exmade" "*example-matching-definition*" nil 2)
     ("exmasu" "*example-matching-subject*" nil 23)
     ("fa" "*failed*" nil 79)
@@ -137,11 +137,11 @@
     ("noex" "*no-example*" nil 135)
     ("oft" "*often*" nil 1)
     ("pat" "**Pattern**:" nil 76)
-    ("pr" "**Predicate**:" nil 63)
+    ("pr" "**Predicate**:" nil 65)
     ("ru" "*cannot-identify-if-running*" nil 0)
     ("sel" "*self-claim-with-0-ex*" nil 5)
     ("stt" "**Stats**:" nil 0)
-    ("su" "**Subject**:" nil 68)
+    ("su" "**Subject**:" nil 69)
     ("subj" "**Subject**: 
 
 **Predicate**: 
@@ -152,7 +152,7 @@
 
 **Checklist**: yes; false; none; not-chapter; not-running; none " nil 144)
     ("suprsp" "*subject-predicate-split*" nil 8)
-    ("te" "*testable*" nil 9)
+    ("te" "*testable*" nil 14)
     ("ti" "*time*" nil 31)
     ("un" "*unsure*" nil 45)
     ("xpatb" "*X-prefers-A-to-B*" nil 0)

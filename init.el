@@ -49,9 +49,18 @@
     '(lambda ()
        (local-set-key (kbd "C-c a") #'abbrev-mode)))
 
+;; ibuffer mode https://emacs.stackexchange.com/a/38665/17941
+(global-set-key (kbd "C-x C-b") 'ibuffer)
+
 ;------------ switch on modes/functions upon startup---------------
 ;; https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
 (setq-default auto-fill-function 'do-auto-fill)
+(setq python-shell-interpreter "/home/eghx/anaconda3/bin/python")
+(setq python-shell-interpreter-args "--pylab")
+
+;; https://emacs.stackexchange.com/questions/13189/github-flavored-markdown-mode-syntax-highlight-code-blocks
+(setq markdown-fontify-code-blocks-natively t)
+
 
 ;; https://www.emacswiki.org/emacs/AutoFillMode
 ;; paragraph filling and spell check mode 
@@ -60,18 +69,28 @@
 (add-hook 'text-mode-hook 'abbrev-mode)
 (add-hook 'text-mode-hook 'winner-mode)
 (add-hook 'text-mode-hook 'electric-pair-mode)
-(add-hook 'markdown-mode-hook 'abbrev-mode)
 (add-hook 'text-mode-hook 'drag-stuff-mode)
 (add-hook 'text-mode-hook 'centered-window-mode)
 
-;; for python
-;; https://stackoverflow.com/questions/2515754/changing-python-interpreter-for-emacs?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-
-(setq python-shell-interpreter "/home/eghx/anaconda3/bin/python")
-
-;; https://stackoverflow.com/questions/2736087/eval-after-load-vs-mode-hook?utm_medium=organic&utm_source=google_rich_qa&utm_campaign=google_rich_qa
-
+(add-hook 'markdown-mode-hook 'abbrev-mode)
 (add-hook 'markdown-mode-hook 'markdown-toggle-url-hiding)
+
+(add-hook 'org-mode-hook 'org-indent-mode)
+
+(add-hook 'ess-mode-hook 'linum-mode)
+
+(add-hook 'LaTeX-mode-hook 'linum-mode)
+(add-hook 'TeX-mode-hook 'flyspell-mode)
+
+'(wc-idle-wait 1)
+'(org-clock-mode-line-total (quote current))
+
+;; https://stackoverflow.com/a/999721/5986651 opens emacs files you close with
+(desktop-save-mode 1)
+
+
+
+
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -79,10 +98,18 @@
  ;; If there is more than one, they won't work right.
  '(TeX-PDF-from-DVI "Dvips")
  '(TeX-engine (quote default))
- '(org-clock-mode-line-total (quote current))
- '(package-selected-packages
+ '(ibuffer-formats
    (quote
-    (centered-window centered-window-mode drag-stuff rmarkdown polymode pabbrev auctex-latexmk ess-smart-underscore ess auctex markdown-mode))))
+    ((mark modified read-only " "
+	   (name 30 30 :left :elide)
+	   " "
+	   (size 9 -1 :right)
+	   " "
+	   (mode 16 16 :left :elide)
+	   " " filename-and-process)
+     (mark " "
+	   (name 16 -1)
+	   " " filename)))))
 
 ;; done using gui and it got converted to this!
 (custom-set-faces
@@ -96,24 +123,18 @@
  '(markdown-header-face-4 ((t (:inherit markdown-header-face :foreground "dark cyan" :height 1.0)))))
 
 
-;; https://stackoverflow.com/a/999721/5986651 opens emacs files you close with
 
-(desktop-save-mode 1)
 
 
 ;; https://www.r-bloggers.com/using-r-with-emacs-and-ess/
 ;; https://github.com/pprevos/r.prevos.net/blob/master/Miscellaneous/BodyImage/init.el
 
-;; Line numbers only for R
-(add-hook 'ess-mode-hook 'linum-mode)
 
-;; https://emacs.stackexchange.com/questions/13189/github-flavored-markdown-mode-syntax-highlight-code-blocks
-(setq markdown-fontify-code-blocks-natively t)
 
 ;;#######################################################
 ;; tex mode hooks
 
-(add-hook 'LaTeX-mode-hook 'linum-mode)
+
 
 ;; https://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start 	
 (setq TeX-auto-save t)
@@ -121,7 +142,7 @@
 
 ;;; Enable Flyspell mode for TeX modes such as AUCTeX. Highlights all misspelled words.
 
-(add-hook 'TeX-mode-hook 'flyspell-mode)
+
 
 ;; (add-hook 'TeX-mode-hook
 ;;           (lambda () (TeX-fold-mode 1))); Automatically activate
@@ -243,3 +264,8 @@
 (drag-stuff-global-mode 1)
 
 (drag-stuff-define-keys)
+
+
+
+
+
