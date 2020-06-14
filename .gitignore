@@ -20,3 +20,5 @@ elpa/gnupg/
 *.data
 *.desktop
 elpa/
+anaconda-mode
+
