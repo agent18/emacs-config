@@ -41,18 +41,23 @@
 ;; ibuffer mode https://emacs.stackexchange.com/a/38665/17941
 (global-set-key (kbd "C-x C-b") 'ibuffer)
 
+
 ;------------ setq and hooks---------------
 
 (setq-default auto-fill-function 'do-auto-fill); https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
 
-(setq python-shell-interpreter "/home/eghx/anaconda3/bin/python")
-(setq python-shell-interpreter-args "--pylab")
+(setq python-shell-interpreter "/home/eghx/anaconda3/bin/ipython")
+;;(setq python-shell-interpreter-args "--pylab")
+(setq python-shell-interpreter-args "--simple-prompt -i"); https://emacs.stackexchange.com/a/24572/17941
 
-(add-hook 'python-mode-hook 'anaconda-mode)
-(add-hook 'python-mode-hook 'anaconda-eldoc-mode)
+;; (add-hook 'python-mode-hook 'anaconda-mode)
+;; (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
 
 ;; https://emacs.stackexchange.com/questions/13189/github-flavored-markdown-mode-syntax-highlight-code-blocks
 (setq markdown-fontify-code-blocks-natively t)
+
+(setq wc-idle-wait 1); slows down markdown-mode
+(setq org-clock-mode-line-total 'current)
 
 ;; https://www.gnu.org/software/auctex/manual/auctex.html#Quick-Start 	
 (setq TeX-auto-save t)
@@ -109,8 +114,7 @@
        (local-set-key (kbd "C-c a") #'abbrev-mode))); abbrev-mode
 						    ; toggle
 
-'(wc-idle-wait 1); slows down markdown-mode
-'(org-clock-mode-line-total (quote current))
+
 
 
 (desktop-save-mode 1); https://stackoverflow.com/a/999721/5986651
@@ -138,7 +142,10 @@
 	   " " filename-and-process)
      (mark " "
 	   (name 16 -1)
-	   " " filename)))))
+	   " " filename))))
+ '(package-selected-packages
+   (quote
+    (wc-mode transpose-frame poly-R pabbrev latex-extra ess-smart-underscore drag-stuff centered-window auctex-latexmk anaconda-mode))))
 
 
 (custom-set-faces

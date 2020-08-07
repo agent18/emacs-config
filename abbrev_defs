@@ -92,33 +92,37 @@
     ("13n" "[13]" nil 16)
     ("14n" "[14]" nil 18)
     ("15n" "[15]" nil 17)
-    ("1n" "[1]" nil 611)
-    ("2n" "[2]" nil 601)
-    ("3n" "[3]" nil 422)
-    ("4n" "[4]" nil 222)
+    ("1n" "[1]" nil 621)
+    ("2n" "[2]" nil 607)
+    ("3n" "[3]" nil 427)
+    ("4n" "[4]" nil 224)
     ("5n" "[5]" nil 185)
     ("6n" "[6]" nil 120)
     ("7n" "[7]" nil 106)
-    ("80k" "80000hours" nil 128)
+    ("80k" "80000hours" nil 130)
     ("8n" "[8]" nil 70)
-    ("97k" "[97k](https://80000hours.org/2016/08/reflections-from-a-givewell-employee/)<span>$</span>" nil 6)
     ("9n" "[9]" nil 56)
+    ("CT" "Cash Transfers" nil 0)
+    ("MBD" "Malaria Bednet Distributions" nil 7)
     ("NA" "N/A" nil 9)
     ("SV" "Silicon Valley" nil 20)
     ("ainta" "*A-is-not-the-answer*" nil 0)
+    ("als" "self-reported life satisfaction average " nil 5)
     ("bel" "*belief-about-right-wrong*" nil 4)
-    ("ch" "**Checklist**: no; neither; " nil 239)
-    ("cl" "**Claims**:" nil 473)
+    ("ch" "**Checklist**: sub; Yes; pre; Yes; ecm; Yes;" nil 259)
+    ("cl" "**Claim**:" nil 596)
     ("cuz" "*because-should-due-to*" nil 17)
     ("def" "**Definition**:" nil 52)
     ("deun" "*definition-unclear*" nil 22)
-    ("dol" "`$`" nil 51)
-    ("ex" "**Example**: 
+    ("dol" "`$`" nil 72)
+    ("dtw" "Deworming the world" nil 2)
+    ("ex" "**Example-sub**: 
 
 **Definition**: 
 
-**Checklist**: 
-" nil 197)
+**Checklist**: sub; Yes; pre; Yes; ecm; Yes;
+
+**Time**:" nil 281)
     ("exmade" "*example-matching-definition*" nil 2)
     ("exmasu" "*example-matching-subject*" nil 23)
     ("fa" "*failed*" nil 79)
@@ -126,6 +130,7 @@
     ("fu" "*future-with-no-ex*" nil 16)
     ("fwex" "*future-with-example*" nil 3)
     ("fwoex" "*future-without-example*" nil 12)
+    ("gw" "GiveWell" nil 14)
     ("hasex" "*unsure-if-it-has-example*" nil 1)
     ("hoto" "**How-to-tackle**:" nil 0)
     ("imp" "*a-is-important*" nil 0)
@@ -136,26 +141,31 @@
     ("mus" "*must*" nil 1)
     ("noex" "*no-example*" nil 135)
     ("oft" "*often*" nil 1)
+    ("owid" "Our World In Data" nil 1)
     ("pat" "**Pattern**:" nil 76)
-    ("pr" "**Predicate**:" nil 65)
+    ("pr" "**Predicate**:" nil 82)
+    ("rec" "**re-write Claim**:" nil 129)
     ("ru" "*cannot-identify-if-running*" nil 0)
     ("sel" "*self-claim-with-0-ex*" nil 5)
     ("stt" "**Stats**:" nil 0)
-    ("su" "**Subject**:" nil 69)
-    ("subj" "**Subject**: 
+    ("su" "**Subject**:" nil 89)
+    ("subj" "**Claim**: 
+
+**re-write Claim**:
+
+**Subject**: 
 
 **Predicate**: 
 
-**Example**: 
+**Example-sub**: 
+
+**Example-pred**: 
 
 **Definition**: 
 
-**Checklist**: yes; false; none; not-chapter; not-running; none " nil 144)
-    ("suprsp" "*subject-predicate-split*" nil 8)
-    ("te" "*testable*" nil 14)
-    ("ti" "*time*" nil 31)
-    ("un" "*unsure*" nil 45)
-    ("xpatb" "*X-prefers-A-to-B*" nil 0)
+**Checklist**: sub; Yes; pre; Yes; ecm; Yes;
+
+**Time**:" nil 161)
    ))
 
 (define-abbrev-table 'grep-mode-abbrev-table '())
@@ -163,6 +173,8 @@
 (define-abbrev-table 'help-mode-abbrev-table '())
 
 (define-abbrev-table 'html-mode-abbrev-table '())
+
+(define-abbrev-table 'ibuffer-mode-abbrev-table '())
 
 (define-abbrev-table 'inferior-julia-mode-abbrev-table '())
 
