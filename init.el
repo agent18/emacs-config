@@ -46,7 +46,7 @@
 
 (setq-default auto-fill-function 'do-auto-fill); https://www.gnu.org/software/emacs/manual/html_node/efaq/Turning-on-auto_002dfill-by-default.html
 
-(setq python-shell-interpreter "/home/eghx/anaconda3/bin/ipython")
+(setq python-shell-interpreter "/home/eghx/anaconda3/envs/fastaiclean/bin/ipython")
 ;;(setq python-shell-interpreter-args "--pylab")
 (setq python-shell-interpreter-args "--simple-prompt -i"); https://emacs.stackexchange.com/a/24572/17941
 
@@ -96,7 +96,7 @@
 							   ;; keybinding
 							   ;; for the
 							   ;; quote-and-autofill
-							   ;; https://stackoverflow.com/a/14230685/5986651
+;; https://stackoverflow.com/a/14230685/5986651
 
 (add-hook 'org-mode-hook 'org-indent-mode)
 
@@ -143,9 +143,12 @@
      (mark " "
 	   (name 16 -1)
 	   " " filename))))
+ '(markdown-uri-types
+   (quote
+    ("acap" "cid" "data" "dav" "fax" "file" "ftp" "gopher" "http" "https" "imap" "ldap" "mailto" "mid" "message" "modem" "news" "nfs" "nntp" "pop" "prospero" "rtsp" "service" "sip" "tel" "telnet" "tip" "urn" "vemmi" "wais" "png")))
  '(package-selected-packages
    (quote
-    (wc-mode transpose-frame poly-R pabbrev latex-extra ess-smart-underscore drag-stuff centered-window auctex-latexmk anaconda-mode))))
+    (ein wc-mode transpose-frame poly-R pabbrev latex-extra ess-smart-underscore drag-stuff centered-window auctex-latexmk anaconda-mode))))
 
 
 (custom-set-faces
@@ -199,6 +202,7 @@
 
 (fset 'quote-and-autofill
    (lambda (&optional arg) "Keyboard macro." (interactive "p") (kmacro-exec-ring-item (quote ([67108896 134217853 3 19 113 134217848 98 97 99 107 tab 119 97 114 100 tab 112 97 114 97 102 backspace 103 114 97 tab return 67108896 134217853 134217841] 0 "%d")) arg)))
+
 
 
 
